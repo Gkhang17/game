@@ -118,7 +118,7 @@ const handleCardFlip = (card) => {
             const div_win = document.querySelector('.win_box');
             // Thêm văn bản
 
-            if (number1 == 22 && player==1) {
+            if (number1 == 22 && player==0) {
                 div_win.textContent = 'Player 2 win';}  
             else   {
                 div_win.textContent = 'Player 1 win';
