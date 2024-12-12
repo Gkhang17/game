@@ -1,0 +1,190 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Tránh cuộn màn hình */
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 cột đều nhau */
+    gap: 5px; /* Khoảng cách giữa các thẻ */
+    width: 95vmin; /* Bảng chiếm 95% chiều ngang màn hình nhỏ hơn */
+    height: 95vmin; /* Bảng có chiều cao tỷ lệ với chiều ngang */
+    max-width: 700px; /* Đặt kích thước tối đa cho bảng */
+    max-height: 700px; /* Đặt chiều cao tối đa */
+}
+
+.card {
+    color: transparent;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%; /* Chiếm toàn bộ không gian của ô trong lưới */
+    height: 100%; /* Giữ tỷ lệ vuông vức */
+    perspective: 1000px; /* Hiệu ứng 3D */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card.flip .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 2px solid #ccc;
+    border-radius: 8px; /* Bo góc nhẹ */
+}
+
+.card-front {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*background-image: url('tree.png');*/
+    display: flex;
+    align-items: center;
+}
+
+.card-back {
+    /*background: url('C:/Users/Admin/Videos/phamgiakhang/fire2.png') no-repeat center/cover;
+    */
+    transform: rotateY(180deg);
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.bo{
+    height: 1px;
+    width: 1px;
+    padding: 100% 47% 0% 0%;
+    left: 0%;    
+    z-index: 2;
+    position: absolute;
+}
+
+.box1{
+    position: absolute;
+    display: grid;
+    width: 200px;
+    height: 100vh;
+    left: 0px;
+    overflow-y: auto; /* Cho phép cuộn dọc */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.box2{
+    position: absolute;
+    display: grid;
+    width: 200px;
+    height: 100vh;
+    right: 0px;
+    overflow-y: auto; /* Cho phép cuộn dọc */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-box {       
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Khoảng cách giữa các box */
+    padding: 10px; /* Đệm trong khung */
+}
+.box1::-webkit-scrollbar,.box2::-webkit-scrollbar {
+    display: none;
+}
+.tool {
+    margin: auto;
+    background-color: #007bff;
+    padding: 25px;
+    width: 50px;
+    height: 100px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Hiệu ứng khi thay đổi */
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+
+.tool:hover {
+
+            transform: rotate(90deg) scale(1.1); /* Phóng to 10% */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+        /* Hiệu ứng mờ dần khi ấn */
+.tool.fade-out {
+            opacity: 0; /* Mờ dần */
+            transform: scale(0.9); /* Thu nhỏ một chút */
+}
+
+/*hiệu ứng rung màn hình*/
+ @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+}
+.shake {
+    animation: shake 0.3s ease; /* Rung trong 0.3 giây */
+}
+
+.won_scen{
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    margin: auto;    
+}
+.win_box{
+    align-content: center;
+    margin: auto;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    position: relative;
+    width: 400px; 
+    height: 200px; 
+    background-color: darkslategray; 
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+.information{
+    border-radius: 10px;
+    color: whitesmoke;
+    display: none;
+    top: 90%;
+    padding: 10px;
+    z-index: 10;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    margin: auto;    
+}
+
+    
